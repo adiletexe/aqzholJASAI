@@ -1,0 +1,67 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Info Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stylecomp.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'img/AqZhol.png' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="login-cont">
+    <div class="back">
+        <a href="{% url 'next' %}"><</a>
+    </div>
+    <div class="person">
+      <img src="{{ driver.image.url }}" alt="Profile Image">
+      <div class="people-info">
+        <h2>{{driver.username}}</h2>
+        <h2>Дата рождения: {{driver.year}}</h2>
+        <h2>Автомобиль: {{driver.car}}</h2>
+      </div>
+    </div>
+    <div class="page-switcher">
+      <a href="{% url 'info' driver.id %}"></a>
+      <a href="{% url 'info2' driver.id %}" class="active"></a>
+    </div>
+    <div class="penalty">
+      <img src="{% static 'img/rush.png' %}" alt="Profile Image">
+      <div class="people-info">
+          <br>
+        <h1>Локация:</h1><p>Улица Назарбаева</p>
+          <h1>Время:</h1><p>19:46, 27.03.2023</p>
+          <h1>Нарушение:</h1><p>Превышение<br> скорости</p>
+      </div>
+    </div>
+    <div class="penaltysleep">
+      <img src="{% static 'img/zzz-sleep-symbol.png' %}" alt="Profile Image">
+      <div class="people-info">
+          <br>
+        <h1>Локация:</h1><p>Улица Пушкина</p>
+          <h1>Время:</h1><p>19:46, 27.03.2023</p>
+          <h1>Нарушение:</h1><p>Сонливость на<br> дороге</p>
+      </div>
+    </div>
+    <div class="penalty">
+      <img src="{% static 'img/rush.png' %}" alt="Profile Image">
+      <div class="people-info">
+          <br>
+        <h1>Локация:</h1><p>Улица Назарбаева</p>
+          <h1>Время:</h1><p>19:46, 27.03.2023</p>
+          <h1>Нарушение:</h1><p>Превышение<br> скорости</p>
+      </div>
+    </div>
+   <div class="container">
+     <img src="{% static 'img/AqZhol.png' %}" alt="AQ ZHOL">
+     <div class="text">
+       <hr>
+     </div>
+   </div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,4 @@
+0 Yawning
+1 Drowsy
+2 Normal
+3 No Person

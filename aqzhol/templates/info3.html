@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Info Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'img/AqZhol.png' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="login-cont">
+        <div class="from_comp">
+            <a href="{% url 'info3comp' driver.id %}">С ПК</a>
+        </div>
+    <div class="back">
+        <a href="{% url 'next' %}"><</a>
+    </div>
+    <div class="person">
+      <img src="{{ driver.image.url }}" alt="Profile Image">
+      <div class="people-info">
+        <h2>{{driver.username}}</h2>
+        <h2>Дата рождения: {{driver.year}}</h2>
+        <h2>Автомобиль: {{driver.car}}</h2>
+      </div>
+    </div>
+   <div class="page-switcher">
+      <a href="{% url 'info' driver.id %}" class="active"></a>
+      <a href="{% url 'info2' driver.id %}"></a>
+    </div>
+    <select class="my-select" onchange="window.location.href=this.value">
+      <option value="">Интервал 10 секунд</option>
+        <option value="{% url 'info' driver.id %}">Интервал 4 часа</option>
+
+    </select>
+   <div class="graph">
+    <svg width="600" height="420">
+        <line x1="50" y1="50" x2="50" y2="350" stroke="black" stroke-width="2"/>
+        <line x1="50" y1="350" x2="420" y2="350" stroke="black" stroke-width="2"/>
+
+        <text x="50" y="370" font-size="12" text-anchor="middle">0</text>
+        <text x="125" y="370" font-size="12" text-anchor="middle">10</text>
+        <text x="200" y="370" font-size="12" text-anchor="middle">20</text>
+        <text x="275" y="370" font-size="12" text-anchor="middle">30</text>
+        <text x="350" y="370" font-size="12" text-anchor="middle">40</text>
+        <text x="405" y="370" font-size="14" text-anchor="middle">Время, с</text>
+
+        <text x="35" y="350" font-size="12" text-anchor="end">0</text>
+        <text x="35" y="315" font-size="12" text-anchor="end">1</text>
+        <text x="35" y="280" font-size="12" text-anchor="end">2</text>
+        <text x="35" y="245" font-size="12" text-anchor="end">3</text>
+        <text x="35" y="210" font-size="12" text-anchor="end">4</text>
+        <text x="35" y="175" font-size="12" text-anchor="end">5</text>
+        <text x="35" y="140" font-size="12" text-anchor="end">6</text>
+        <text x="35" y="105" font-size="12" text-anchor="end">7</text>
+        <text x="35" y="70" font-size="12" text-anchor="end">8</text>
+        <text x="180" y="35" font-size="14" text-anchor="end">Количество засыпаний</text>
+
+        <line x1="125" y1="350" x2="125" y2="345" stroke="black" stroke-width="1"/>
+        <line x1="200" y1="350" x2="200" y2="345" stroke="black" stroke-width="1"/>
+        <line x1="275" y1="350" x2="275" y2="345" stroke="black" stroke-width="1"/>
+        <line x1="350" y1="350" x2="350" y2="345" stroke="black" stroke-width="1"/>
+
+        <line x1="50" y1="350" x2="55" y2="350" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="315" x2="55" y2="315" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="280" x2="55" y2="280" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="245" x2="55" y2="245" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="210" x2="55" y2="210" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="175" x2="55" y2="175" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="140" x2="55" y2="140" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="105" x2="55" y2="105" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="70" x2="55" y2="70" stroke="black" stroke-width="1"/>
+
+        <circle cx="125" cy="{{ s1 }}" r="2" fill="red"/>
+        <circle cx="200" cy="{{ s2 }}" r="2" fill="red"/>
+        <circle cx="275" cy="{{ s3 }}" r="2" fill="red"/>
+        <circle cx="350" cy="{{ s4 }}" r="2" fill="red"/>
+
+        <polyline points="50,350 125,{{ s1 }} 200,{{ s2 }} 275,{{ s3 }} 350,{{ s4 }}" stroke="red" stroke-width="1" fill="none"/>
+    </svg>
+   </div>
+   <div class="container">
+     <img src="{% static 'img/AqZhol.png' %}" alt="AQ ZHOL">
+     <div class="text">
+       <hr>
+     </div>
+   </div>
+	</div>
+</body>
+</html>

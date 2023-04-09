@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Info Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stylecomp.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'img/AqZhol.png' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="navigation">
+		<img src="{% static 'img/AqZhol.png' %}" alt="Logo">
+
+		<a href="{% url 'nextcomp' %}">Водители</a>
+		<a href="{% url 'info3' driver.id %}">С телефона</a>
+        <a href="{% url 'logoutsystemcomp' %}">Выход</a>
+
+	</div>
+
+    <div class="person">
+      <img src="{{ driver.image.url }}" alt="Profile Image">
+      <div class="people-info">
+        <h1>{{driver.username}}</h1>
+        <h3>Водитель</h3>
+        <h2>Дата рождения: {{driver.year}}</h2>
+        <h2>Автомобиль: {{driver.car}}</h2>
+      </div>
+    </div>
+    <div class="info-cont">
+    <select class="my-select" onchange="window.location.href=this.value">
+      <option value="">Интервал 10 секунд</option>
+      <option value="{% url 'infocomp' driver.id %}">Интервал 4 часа</option>
+    </select>
+   <div class="graph">
+    <svg width="1000" height="500">
+
+        <!-- Axes -->
+        <line x1="50" y1="45" x2="50" y2="450" stroke="black" stroke-width="2"/>
+        <line x1="50" y1="450" x2="750" y2="450" stroke="black" stroke-width="2"/>
+
+        <!-- X-axis labels -->
+        <text x="50" y="480" font-size="12" text-anchor="middle">0</text>
+        <text x="190" y="480" font-size="12" text-anchor="middle">10</text>
+        <text x="330" y="480" font-size="12" text-anchor="middle">20</text>
+        <text x="470" y="480" font-size="12" text-anchor="middle">30</text>
+        <text x="610" y="480" font-size="12" text-anchor="middle">40</text>
+        <text x="750" y="480" font-size="14" text-anchor="middle">Время, с</text>
+
+        <!-- Y-axis labels -->
+        <text x="35" y="450" font-size="12" text-anchor="end">0</text>
+        <text x="35" y="405" font-size="12" text-anchor="end">1</text>
+        <text x="35" y="360" font-size="12" text-anchor="end">2</text>
+        <text x="35" y="315" font-size="12" text-anchor="end">3</text>
+        <text x="35" y="270" font-size="12" text-anchor="end">4</text>
+        <text x="35" y="225" font-size="12" text-anchor="end">5</text>
+        <text x="35" y="180" font-size="12" text-anchor="end">6</text>
+        <text x="35" y="135" font-size="12" text-anchor="end">7</text>
+        <text x="35" y="90" font-size="12" text-anchor="end">8</text>
+        <text x="170" y="35" font-size="14" text-anchor="end">Количество засыпаний</text>
+
+        <!-- Short vertical lines for x-axis -->
+        <line x1="50" y1="450" x2="50" y2="445" stroke="black" stroke-width="1"/>
+        <line x1="190" y1="450" x2="190" y2="445" stroke="black" stroke-width="1"/>
+        <line x1="330" y1="450" x2="330" y2="445" stroke="black" stroke-width="1"/>
+        <line x1="470" y1="450" x2="470" y2="445" stroke="black" stroke-width="1"/>
+        <line x1="610" y1="450" x2="610" y2="445" stroke="black" stroke-width="1"/>
+
+        <!-- Red dots -->
+        <circle cx="190" cy="{{ s1 }}" r="2" fill="red"/>
+        <circle cx="330" cy="{{ s2 }}" r="2" fill="red"/>
+        <circle cx="470" cy="{{ s3 }}" r="2" fill="red"/>
+        <circle cx="610" cy="{{ s4 }}" r="2" fill="red"/>
+
+        <!-- Short horizontal lines for y-axis -->
+        <line x1="50" y1="400" x2="55" y2="400" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="355" x2="55" y2="355" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="310" x2="55" y2="310" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="265" x2="55" y2="265" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="220" x2="55" y2="220" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="175" x2="55" y2="175" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="130" x2="55" y2="130" stroke="black" stroke-width="1"/>
+        <line x1="50" y1="85" x2="55" y2="85" stroke="black" stroke-width="1"/>
+
+        <!-- Line going through points -->
+        <polyline points="50,450 190,{{ s1 }} 330,{{ s2 }} 470,{{ s3 }} 610,{{ s4 }}" stroke="red" stroke-width="1" fill="none"/>
+    </svg>
+   </div>
+        <div class="penalties">
+            <h2 class="hh1">Нарушение</h2>
+            <h2 class="hh2">Время</h2>
+            <h2 class="hh3">Локация</h2>
+        </div>
+        <div class="penalty">
+          <img src="{% static 'img/rush.png' %}" alt="Profile Image">
+          <div class="penalty-info">
+              <br>
+              <p class="pp1">Превышение<br> скорости</p>
+              <p class="pp2">19:46, 27.03.2023</p>
+              <p class="pp3">Улица Назарбаева</p>
+          </div>
+        </div>
+    <div class="penaltysleep">
+      <img src="{% static 'img/zzz-sleep-symbol.png' %}" alt="Profile Image">
+      <div class="penalty-info">
+          <br>
+          <p class="pp1">Сонливость на<br> дороге</p>
+          <p class="pp2">19:46, 27.03.2023</p>
+          <p class="pp3">Улица Пушкина</p>
+      </div>
+    </div>
+    <div class="penalty">
+      <img src="{% static 'img/rush.png' %}" alt="Profile Image">
+      <div class="penalty-info">
+          <br>
+          <p class="pp1">Превышение<br> скорости</p>
+          <p class="pp2">19:46, 27.03.2023</p>
+          <p class="pp3">Улица Назарбаева</p>
+      </div>
+    </div>
+	</div>
+</body>
+</html>

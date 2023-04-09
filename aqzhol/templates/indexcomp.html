@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stylecomp.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'img/AqZhol.png' %}">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="navigation">
+		<img src="{% static 'img/AqZhol.png' %}" alt="Logo">
+        <a href="{% url 'loginsystem' %}">С телефона</a>
+	</div>
+	<div class="login-container">
+		<div class="login-header">
+			<img src="{% static 'img/AqZhol.png' %}" alt="">
+		</div>
+		<div class="login-form">
+			<form method="POST" action="{% url 'loginsystemcomp' %}">
+				{% csrf_token %}
+				<label for="username">Логин</label>
+				<br>
+				<input type="text" id="username" name="username">
+				<br>
+				<label for="password">Пароль</label>
+				<br>
+				<input type="password" id="password" name="password">
+				<div class="incorrect-password">
+					<p>{{ error }}</p>
+				</div>
+
+				<div class="forgot-password">
+					<a href="#">Забыли пароль?</a>
+				</div>
+
+				<button type="submit">Войти</button>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

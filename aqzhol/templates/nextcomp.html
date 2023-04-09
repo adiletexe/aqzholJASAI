@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Next Page</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/stylecomp.css' %}">
+	<link rel="icon" type="image/x-icon" href="{% static 'img/AqZhol.png' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="navigation">
+		<img src="{% static 'img/AqZhol.png' %}" alt="Logo">
+		<a href="{% url 'nextcomp' %}">Водители</a>
+		<a href="{% url 'next' %}">С телефона</a>
+        <a href="{% url 'logoutsystemcomp' %}">Выход</a>
+	</div>
+	<div class="login-cont">
+		<div class="search">
+      <form method="get" action="#">
+        <input placeholder="Поиск" type="text" name="query">
+      </form>
+        </div>
+    <div class="grid-container">
+        {% for driver in drivers %}
+        <a href="{% url 'infocomp' driver.id %}">
+            <div class="people">
+              <img src="{{ driver.image.url }}" alt="Profile Image">
+              <div class="people-info">
+                <h2>{{ driver.username }}</h2>
+                <h2>{{ driver.year }}</h2>
+              </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% for driver in drivers %}
+        <a href="{% url 'infocomp' driver.id %}">
+            <div class="people">
+              <img src="{{ driver.image.url }}" alt="Profile Image">
+              <div class="people-info">
+                <h2>{{ driver.username }}</h2>
+                <h2>{{ driver.year }}</h2>
+              </div>
+            </div>
+        </a>
+        {% endfor %}
+        {% for driver in drivers %}
+        <a href="{% url 'infocomp' driver.id %}">
+            <div class="people">
+              <img src="{{ driver.image.url }}" alt="Profile Image">
+              <div class="people-info">
+                <h2>{{ driver.username }}</h2>
+                <h2>{{ driver.year }}</h2>
+              </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    </div>
+</body>
+</html>
